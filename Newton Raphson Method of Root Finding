@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double r = -3; // initial value
+            newtonRaphson(r);
+
+            Console.ReadKey();
+        }
+
+         static void newtonRaphson(double p)
+        {
+            // Newton Rahson Method of Root Finding - Hardcode
+
+            Console.WriteLine("x (prev) : {0}", p);
+           
+           // Function
+            double eq1 = Math.Pow(p, 3) - 4; // Write Func Here
+            string eq1a = eq1.ToString("0.000#");
+            double eq1b = double.Parse(eq1a);
+
+            // F'(x)
+            double eq2 = 3 * (Math.Pow(p, 2)); // Write Func Deriative Here
+            string eq2a = eq2.ToString("0.000#");
+            double eq2b = double.Parse(eq2a);
+
+            // Newton Raphson Formula
+            double r = p -  (eq1 / eq2); // Formula of Newton Raphson
+            string r1 = r.ToString("0.000#");
+            double r2 = double.Parse(r1);
+            Console.WriteLine("x : {0}", r2);
+
+            double pr = p;
+            string p1 = pr.ToString("0.000#");
+            double p2 = double.Parse(p1);
+            Console.WriteLine("================================================");
+
+            if (p2 == r2)
+            {
+                Console.WriteLine("Ans is: {0}", pr);
+            }
+            if (p2 != r2){
+                newtonRaphson(r2); //recursion
+            }
+            
+        } 
+    }
+}
