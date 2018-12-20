@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+    th, td {
+        padding: 15px;
+        text-align: left;
+        text-align: center;
+    }
+
+    .main {
+        align-self: center;
+    }
+    </style>
+</head>
+<body>
+    <H3>Calculate Interpolation for n<sup>th</sup> Order of Polynomial: Using Lagrange Method</H3>
+    <div class="main">
+    <Label>Enter Lenght Of Data Set</Label>
+    <input type="number" name="n" id="n">
+    <div id="button1"><button onclick="askNumber()">Submit</button></div>
+    <span id="print-n"></span>
+    <div id="x"></div>
+    <div id="message1"></div>
+    <div id="button3"></div>
+    
+    <table id="L" style="width: 100%" border="1"></table>
+    </div>
+
+    <script>
+        var n;
+        var x = [];
+        var y = [];
+        var xy;
+
+        function askNumber() {
+            n = document.getElementById("n").value;
+            if(n > 1){
+                document.getElementById("print-n").innerHTML = "n =" + n ;
+                askValuesOfX();
+            } eles 
+            {
+                document.getElementById("print-n").innerHTML = "Error, Please Input Number of Dataset";
+            }
+        }
+
+        function askValuesOfX(){
+
+            // Getting Input by User for Value of X
+            document.getElementById("x").innerHTML = "Enter All Value of X </br>";
+            
+            for(var i = 0; i < n; i++){
+                document.getElementById("x").innerHTML += "<input required step='any' type='number' id="+ "'" + i + 'x' + "'" + ">";
+            }
+
+            // Getting Input by User for Value of Y
+            document.getElementById("x").innerHTML += "</br> Enter All Value of Y </br>";
+            
+            for(var i = 0; i < n; i++){
+                document.getElementById("x").innerHTML += "<input required step='any' type='number' id="+ "'" + i + 'y' + "'" + ">";
+            } 
+
+            document.getElementById("x").innerHTML += "</br> Enter The Value of X where Y = ? </br>";
+
+            document.getElementById("x").innerHTML += "<input required step='any' type='number' id="+ "'" + 'xy' + "'" + ">";
+            
+            document.getElementById('button3') .innerHTML = "</br> <button onclick='getValueofX()'>Get Answer</button>"
+        }
+
+        function getValueofX(){
+            console.log("Values of X is: ");
+            for(var i = 0; i < n; i++){
+                var d = i + "x";
+                var c = document.getElementById(d).value;
+                console.log(c)
+
+                if(c == ""){
+                    console.log("Error");
+                    document.getElementById("message1").innerHTML = "Error Please Check Your Data Type Must Be Number/ You can't leave somthing Blank";
+                    break;
+                } else {
+                    console.log(c);
+                    x[i] = c;
+                    document.getElementById("message1").innerHTML = "";
+                }
+            }
+
+            console.log("Values of Y is: ");
+            for(var i = 0; i < n; i++){
+                var d = i + "y";
+                var c = document.getElementById(d).value;
+                if(c == ""){
+                    console.log("Error");
+                    document.getElementById("message1").innerHTML = "Error Please Check Your Data Type Must Be Number/ You can't leave somthing Blank";
+                    break;
+                } else {
+                    console.log(c);
+                    y[i] = c;
+                    document.getElementById("message1").innerHTML = "";
+                }
+                
+            }
+
+            // Get Unknown X
+            var t = "xy";
+            var u = document.getElementById(t).value;
+
+            if(u == ""){
+                    console.log("Error");
+                    document.getElementById("message1").innerHTML = "Error Please Check Your Data Type Must Be Number/ You can't leave somthing Blank";
+                } else {
+                    console.log(c);
+                    xy = u;
+                    document.getElementById("message1").innerHTML = "";
+                }
+
+            //console.log(n, x.length, y.length);
+
+            if((xy >= 0 || xy <=0) && y.length == n & x.length == n ){
+                document.getElementById("message1").innerHTML = "";
+                langrange();
+                document.getElementById("button1").innerHTML = "<button disabled>Submit</button>";
+                document.getElementById("button3").innerHTML = "<button disabled>Get Answer</button>";
+            }
+            else {
+                document.getElementById("message1").innerHTML = "Error Please Check Your Data Type Must Be Number/ You can't leave somthing Blank";
+            }
+        }
+
+        function langrange(){
+            var sum = 0
+            for(var i = 0; i < n; i++){
+                var product = y[i];
+                for(var j = 0; j < n; j++){
+                   if(i != j){
+                       product = product*(xy - x[j])/(x[i] - x[j]);
+                   }
+                }
+                sum = sum + product
+            }
+            var ans = sum
+            console.log(ans);
+
+            document.getElementById("L").innerHTML = "<tr><th>" + "X" + "</th><th>" + "Y" + "</th></tr><tr><td>" + xy + "</td><td>" + ans + "</td></tr>";
+        }
+    </script>
+</body>
+</html>
