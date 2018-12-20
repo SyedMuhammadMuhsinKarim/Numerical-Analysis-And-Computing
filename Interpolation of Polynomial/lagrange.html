@@ -73,33 +73,27 @@
         }
 
         function getValueofX(){
-            console.log("Values of X is: ");
+            //Values of X
             for(var i = 0; i < n; i++){
                 var d = i + "x";
                 var c = document.getElementById(d).value;
-                console.log(c)
-
                 if(c == ""){
-                    console.log("Error");
                     document.getElementById("message1").innerHTML = "Error Please Check Your Data Type Must Be Number/ You can't leave somthing Blank";
                     break;
                 } else {
-                    console.log(c);
                     x[i] = c;
                     document.getElementById("message1").innerHTML = "";
                 }
             }
 
-            console.log("Values of Y is: ");
+            //Values of Y
             for(var i = 0; i < n; i++){
                 var d = i + "y";
                 var c = document.getElementById(d).value;
                 if(c == ""){
-                    console.log("Error");
                     document.getElementById("message1").innerHTML = "Error Please Check Your Data Type Must Be Number/ You can't leave somthing Blank";
                     break;
                 } else {
-                    console.log(c);
                     y[i] = c;
                     document.getElementById("message1").innerHTML = "";
                 }
@@ -111,15 +105,11 @@
             var u = document.getElementById(t).value;
 
             if(u == ""){
-                    console.log("Error");
                     document.getElementById("message1").innerHTML = "Error Please Check Your Data Type Must Be Number/ You can't leave somthing Blank";
                 } else {
-                    console.log(c);
                     xy = u;
                     document.getElementById("message1").innerHTML = "";
                 }
-
-            //console.log(n, x.length, y.length);
 
             if((xy >= 0 || xy <=0) && y.length == n & x.length == n ){
                 document.getElementById("message1").innerHTML = "";
@@ -144,7 +134,6 @@
                 sum = sum + product
             }
             var ans = sum
-            console.log(ans);
 
             document.getElementById("L").innerHTML = "<tr><th>" + "X" + "</th><th>" + "Y" + "</th></tr><tr><td>" + xy + "</td><td>" + ans + "</td></tr>";
         }
